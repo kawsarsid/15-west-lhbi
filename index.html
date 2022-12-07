@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>15 West 96th Street</title>
+    <meta name="description" content="15 West 96th Street" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <section class="fifteen-section">
+        <div class="inner-container">
+            <div class="mobile-heading">
+                <span class="count">
+                    <img src="icons/number-15.svg" alt="">
+                </span>
+                <div class="fiftenn-logo">
+                    <img src="icons/logo-15.svg" alt="">
+                </div>
+            </div>
+            <div class="fifteen-main">
+                <div class="fifteen-scrolly">
+                    <div class="fifteen-left">
+                        <div class="fifty-left-inner">
+                            <div class="fifteen-left-content">
+                                <img src="images/WestStreetDay.jpg" alt="">
+                            </div>
+                            <div class="fifteen-left-content absolute">
+                                <img src="images/WestStreetNight.jpg" alt="">
+                            </div>
+                            <p class="caption">This is an artistic rendering</p>
+                            <a href="#join-form" class="join-btn">Join our interest list</a>
+                        </div>
+                    </div>
+                    <div class="fifteen-right">
+                        <div class="step fifteen-right-content fifteen-right-data" data-step="1">
+                            <!-- 
+                            <span class="count">
+                                <img src="icons/number-15.svg" alt="">
+                            </span>
+                            -->
+                            
+                            <div class="inner-content py-6">
+                                <div class="fiftenn-logo desktop-only">
+                                    <img src="icons/logo-15.svg" alt="">
+                                </div>
+                                <div class="contents">
+                                    <!-- <h1>TAGLINE HERE</h1> -->
+                                    <p>Just off Central Park, a distinct collection of condominium residences rise to the sky. Unparalleled views of nature and Manhattan’s skyline come together to form a one-of-a-kind vantage point. Nestled in the most coveted corner of the Upper West Side is a retreat from your day-to-day life where privacy, comfort, and beauty live in one location. A place that adds character while showing off its unique personality. A place where you can feel at ease no matter what life throws at you.</p>
+                                    <p class="coming-soon">Debuts Spring 2023</p>
+                                    <a href="#join-form" class="join-btn">Join our interest list</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step fifteen-right-content fifteen-right-form" data-step="2" id="join-form">
+                            <div class="inner-content">
+                                <h2>JOIN THE LIST</h2>
+                                <div data-paperform-id="eqmw0ccm"></div>
+                                <script>
+                                    (function () {
+                                        var script = document.createElement('script');
+                                        script.src = "https://paperform.co/__embed.min.js";
+                                        document.body.appendChild(script);
+                                    })()
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="disclamer">
+        <p>This advertisement is not an offering. It is a solicitation of interest in the advertised property. No
+            offering of the advertised units can be made and no deposits can be accepted, or reservations, binding or
+            non-binding, can be made until an offering plan is filed with the New York State Department of Law. This
+            advertisement is made pursuant to Cooperative Policy Statement #1, issued by the New York State Department
+            of Law. File No. CP22-0019. Sponsor: <a class="unstyled" href="#">2686-2690</a> Broadway LLC, 75 Broad Street, Suite 708, New York, NY 10004.
+        </p>
+        <span class="count">
+            <img src="icons/number-15.svg" alt="">
+        </span>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+    <script src="js/scrollama.min.js"></script>
+    <script>
+        var main = d3.select(".fifteen-main");
+        var scrolly = main.select(".fifteen-scrolly");
+        var figure = scrolly.select(".fifteen-left");
+        var article = scrolly.select(".fifteen-right");
+        var step = article.selectAll(".step");
+        var scroller = scrollama();
+
+        function handleResize() {
+            scroller.resize();
+        }
+
+        function handleStepEnter(response) {
+            step.classed("is-active", function (d, i) {
+                return i === response.index;
+            });
+
+            article.classed("dataBg", function (d, i) {
+                return i === response.index;
+            });
+
+            figure.selectAll(".fifteen-left-content").classed("active", function (d, i) {
+                return i === response.index;
+            });
+        }
+
+        function init() {
+            handleResize();
+            scroller
+                .setup({
+                    step: ".fifteen-scrolly .fifteen-right .step",
+                    offset: '-100px',
+                    debug: false
+                })
+                .onStepEnter(handleStepEnter);
+        }
+        window.addEventListener('scroll', () => {
+            if( window.innerWidth > 768 ){
+                if((window.scrollY + window.innerHeight) >= ($(document).height() - 50)){
+                    $(".fifteen-left-content").addClass('active');
+                    return;
+                }
+                $(".fifteen-left-content").removeClass('active');
+            }
+        }, { passive: true })
+        // init();
+
+        var imgDivHeight = $('.fifty-left-inner').height() / 4.5;
+        var windowWidth = $(window).innerWidth();
+        $(window).scroll(function () {
+            if (windowWidth <= 768) {
+                var scrollTop = $(window).scrollTop(),
+                    divOffset = $('.fifty-left-inner').offset().top + imgDivHeight - 200;
+                if (scrollTop > divOffset) {
+                    $('.fifteen-left-content').removeClass('active');
+                    $('.fifteen-left-content').eq(1).addClass('active');
+                } else {
+                    $('.fifteen-left-content').removeClass('active');
+                    $('.fifteen-left-content').eq(0).addClass('active');
+                }
+            }
+        });
+
+        $('a[href*=\\#]:not([href=\\#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length && $(window).outerWidth() > 767) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 500);
+                    return false;
+                } else {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1500);
+                    return false;
+                }
+            }
+        });
+
+        var unstyled = document.querySelectorAll(".unstyled")
+        unstyled.forEach(a => {
+            a.addEventListener('click', function(e){
+                e.preventDefault();
+            })
+        })
+
+    </script>
+
+</body>
+
+</html>
