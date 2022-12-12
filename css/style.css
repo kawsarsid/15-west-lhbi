@@ -157,6 +157,9 @@ h4 {
   align-items: center;
   flex-direction: column;
 }
+.content-main {
+	margin-bottom: 1.2rem;
+}
 @media (max-width: 768px) {
   .fifteen-right-content {
     min-height: auto;
