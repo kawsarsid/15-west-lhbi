@@ -624,10 +624,9 @@ div[data-paperform-id]::-webkit-scrollbar-thumb:hover {
   .desktop-only{ display: none; }
   .mobile-only{ display: block; }
 }
-
-.py-6{
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+.py-6 {
+    padding-top: 6rem;
+    /* padding-bottom: 6rem; */
 }
 @media (max-width: 767px) {
   .py-6{
